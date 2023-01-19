@@ -18,7 +18,6 @@ public class HibernateUtil {
             try {
                 Configuration configuration = new Configuration().configure();
                 if (configuration != null) {
-                    logger.error(configuration);
                     configuration.addAnnotatedClass(Clients.class);
                     configuration.addAnnotatedClass(Statuses.class);
                     configuration.addAnnotatedClass(Accounts.class);
@@ -26,6 +25,7 @@ public class HibernateUtil {
                             .applySettings(configuration.getProperties());
                     sessionFactory = configuration.buildSessionFactory(builder.build());
                 }
+                logger.error(configuration);
             } catch (Exception e) {
                 System.out.println("Session factory Error: " + e);
             }
