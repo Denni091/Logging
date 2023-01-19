@@ -1,5 +1,6 @@
 package org.example.dao;
 
+import org.apache.log4j.Logger;
 import org.example.entity.Clients;
 import org.example.util.HibernateUtil;
 import org.hibernate.Session;
@@ -10,8 +11,10 @@ import javax.persistence.Query;
 
 public class ClientsDao {
 
-    public void save(Clients clients) {
+    private final Logger logger = Logger.getLogger(ClientsDao.class);
 
+    public void save(Clients clients) {
+        logger.debug(clients);
         final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
@@ -23,6 +26,7 @@ public class ClientsDao {
     }
 
     public void update(Clients clients) {
+        logger.debug(clients);
         final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
@@ -34,6 +38,7 @@ public class ClientsDao {
     }
 
     public void delete(Clients clients) {
+        logger.debug(clients);
         final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
@@ -46,6 +51,7 @@ public class ClientsDao {
 
 
     public Clients getById(int id) {
+        logger.debug(id);
         final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
@@ -70,6 +76,7 @@ public class ClientsDao {
         transaction.commit();
         session.close();
 
+//        logger.debug(phone);
         return clients;
 
     }

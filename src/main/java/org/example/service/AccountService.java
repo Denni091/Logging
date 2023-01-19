@@ -1,29 +1,31 @@
 package org.example.service;
 
+import org.apache.log4j.Logger;
 import org.example.dao.AccountDao;
 import org.example.entity.Accounts;
 
 public class AccountService {
 
-    private AccountDao accountDao = new AccountDao();
+    private final AccountDao accountDao = new AccountDao();
+    private final Logger logger = Logger.getLogger(AccountService.class);
 
     public void save(Accounts accounts) {
-        System.out.println("Account for save: " + accounts.toString());
+        logger.debug(accounts);
         accountDao.save(accounts);
     }
 
     public void update(Accounts accounts) {
-        System.out.println("Account for update: " + accounts.toString());
+        logger.debug(accounts);
         accountDao.update(accounts);
     }
 
     public void delete(Accounts accounts) {
-        System.out.println("Account for deleting: " + accounts.toString());
+        logger.debug(accounts);
         accountDao.delete(accounts);
     }
 
     public Accounts getById(int id) {
-        System.out.println("Id for getting Account: " + id);
+        logger.debug(id);
         return accountDao.getById(id);
     }
 }

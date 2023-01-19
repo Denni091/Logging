@@ -1,5 +1,6 @@
 package org.example.dao;
 
+import org.apache.log4j.Logger;
 import org.example.entity.Clients;
 import org.example.entity.Statuses;
 import org.example.util.HibernateUtil;
@@ -9,7 +10,10 @@ import org.hibernate.Transaction;
 
 public class StatusDao {
 
+    private final Logger logger = Logger.getLogger(StatusDao.class);
+
     public void save(Statuses statuses) {
+        logger.debug(statuses);
 
         final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         final Session session = sessionFactory.openSession();
@@ -22,6 +26,7 @@ public class StatusDao {
     }
 
     public void update(Statuses statuses) {
+        logger.debug(statuses);
         final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
@@ -33,6 +38,7 @@ public class StatusDao {
     }
 
     public void delete(Statuses statuses) {
+        logger.debug(statuses);
         final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
@@ -45,6 +51,7 @@ public class StatusDao {
 
 
     public Statuses getById(int id) {
+        logger.debug(id);
         final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();

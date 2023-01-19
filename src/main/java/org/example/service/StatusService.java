@@ -1,29 +1,31 @@
 package org.example.service;
 
+import org.apache.log4j.Logger;
 import org.example.dao.StatusDao;
 import org.example.entity.Statuses;
 
 public class StatusService {
 
-    private StatusDao statusDao = new StatusDao();
+    private final StatusDao statusDao = new StatusDao();
+    private final Logger logger = Logger.getLogger(StatusDao.class);
 
-    public void save(Statuses status) {
-        System.out.println("Status for save: " + status.toString());
-        statusDao.save(status);
+    public void save(Statuses statuses) {
+        logger.debug(statuses);
+        statusDao.save(statuses);
     }
 
     public void update(Statuses statuses) {
-        System.out.println("Status for update: " + statuses.toString());
+        logger.debug(statuses);
         statusDao.update(statuses);
     }
 
     public void delete(Statuses statuses) {
-        System.out.println("Status for deleting: " + statuses.toString());
+        logger.debug(statuses);
         statusDao.delete(statuses);
     }
 
     public Statuses getById(int id) {
-        System.out.println("Id for getting status: " + id);
+        logger.debug(id);
         return statusDao.getById(id);
     }
 }
